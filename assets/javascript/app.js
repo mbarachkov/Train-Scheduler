@@ -31,34 +31,38 @@ $("#submitId").on("click", function (event) {
         time: firstTime,
         frequency: myFrequency
     });
-});
-database.ref().on("child_added", function (snapshot) {
-    var data = snapshot.val()
-    var trainName = data.train;
-    var myDestination = data.destination;
-    var tFrequency = 3;
-    var firstTime = "03:30";
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    var currentTime = moment();
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    var tRemainder = diffTime % tFrequency;
-    var tMinutesTillTrain = tFrequency - tRemainder;
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
-    console.log(moment(currentTime).format("HH:mm"));
-    console.log(diffTime);
-    console.log(tRemainder);
-    console.log(tMinutesTillTrain);
-    console.log(moment(nextTrain).format("HH:mm"));
+    database.ref().on("child_added", function (snapshot) {
+        var data = snapshot.val()
+        var trainName = data.train;
+        var myDestination = data.destination;
+        var tFrequency = myFrequency;
+        var firstTime = "03:30";
+        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+        var currentTime = moment();
+        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        var tRemainder = diffTime % tFrequency;
+        var tMinutesTillTrain = tFrequency - tRemainder;
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
-    $("#thisCard > tbody").append
+        console.log(moment(currentTime).format("HH:mm"));
+        console.log(diffTime);
+        console.log(tRemainder);
+        console.log(tMinutesTillTrain);
+        console.log(moment(nextTrain).format("HH:mm"));
 
-    var trNode = $("<tr>");
-    trNode.append($("<td>").text(trainName));
-    trNode.append($("<td>").text(myDestination));
-    trNode.append($("<td>").text(tFrequency));
-    trNode.append($("<td>").text(moment(nextTrain).format("HH:mm A")));
-    trNode.append($("<td>").text(tMinutesTillTrain));
-    $("tbody").append(trNode);
+        $("#thisCard > tbody").append
+
+        var trNode = $("<tr>");
+        trNode.append($("<td>").text(trainName));
+        trNode.append($("<td>").text(myDestination));
+        trNode.append($("<td>").text(tFrequency));
+        trNode.append($("<td>").text(moment(nextTrain).format("HH:mm A")));
+        trNode.append($("<td>").text(tMinutesTillTrain));
+        $("tbody").append(trNode);
+
+    });
+
+
 
 });
