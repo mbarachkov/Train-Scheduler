@@ -30,6 +30,10 @@ $("#submitId").on("click", function (event) {
         destination: myDestination,
         time: firstTime,
         frequency: myFrequency
+
+
+
+        
     });
 
     database.ref().on("child_added", function (snapshot) {
@@ -54,11 +58,11 @@ $("#submitId").on("click", function (event) {
         $("#thisCard > tbody").append
 
         var trNode = $("<tr>");
-        trNode.append($("<td>").text(trainName));
-        trNode.append($("<td>").text(myDestination));
-        trNode.append($("<td>").text(tFrequency));
-        trNode.append($("<td>").text(moment(nextTrain).format("HH:mm A")));
-        trNode.append($("<td>").text(tMinutesTillTrain));
+        trNode.append($("<td>").html(trainName));
+        trNode.append($("<td>").html(myDestination));
+        trNode.append($("<td>").html(tFrequency));
+        trNode.append($("<td>").html(moment(nextTrain).format("HH:mm A")));
+        trNode.append($("<td>").html(tMinutesTillTrain));
         $("tbody").append(trNode);
 
     });
