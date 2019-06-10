@@ -45,11 +45,11 @@ database.ref().on("child_added", function (snapshot) {
     var tMinutesTillTrain = tFrequency - tRemainder;
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
-    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
-    console.log("DIFFERENCE IN TIME: " + diffTime);
+    console.log(moment(currentTime).format("HH:mm"));
+    console.log(diffTime);
     console.log(tRemainder);
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
+    console.log(tMinutesTillTrain);
+    console.log(moment(nextTrain).format("HH:mm"));
 
     $("#thisCard > tbody").append
 
